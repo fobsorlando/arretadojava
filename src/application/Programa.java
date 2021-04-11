@@ -1,5 +1,7 @@
 package application;
 
+import model.dao.DaoFactory;
+import model.dao.DepartamentoDao;
 import model.entities.Departamento;
 import model.entities.Grupo;
 import model.entities.Secao;
@@ -21,6 +23,9 @@ public class Programa {
 		System.out.println(obj1);
 		System.out.println(obj2);
 		System.out.println(obj3);
+		
+		
+		DepartamentoDao departamentoDao = DaoFactory.createDepartamentoDao();
 
 
 	}
