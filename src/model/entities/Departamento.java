@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Departamento implements Serializable  {
 	
@@ -12,6 +13,9 @@ public class Departamento implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String no_departamento;
+	private Date dth_criacao;
+	private Date dth_alteracao;
+	
 	
 	public Departamento () {
 		
@@ -71,6 +75,14 @@ public class Departamento implements Serializable  {
 
 	public void setNo_departamento(String no_departamento) {
 		this.no_departamento = no_departamento;
+	}
+
+	public Date getDth_criacao() {
+		return dth_criacao;
+	}
+
+	public Date getDth_alteracao() {
+		return dth_alteracao;
 	}
 	
 }
