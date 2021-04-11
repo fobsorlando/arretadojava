@@ -3,7 +3,7 @@ package model.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Departamento implements Serializable  {
+public class SubGrupo implements Serializable  {
 	
 	/**
 	 * Orlando Sabóia - FOBS
@@ -12,19 +12,19 @@ public class Departamento implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String no_departamento;
+	private String no_subGrupo;
 	private Date dth_criacao;
 	private Date dth_alteracao;
 	
 	
-	public Departamento () {
+	public SubGrupo () {
 		
 	}
 
-	public Departamento(Integer id, String no_departamento) {
+	public SubGrupo(Integer id, String no_subGrupo) {
 		super();
 		this.id = id;
-		this.no_departamento = no_departamento;
+		this.no_subGrupo = no_subGrupo;
 	}
 
 
@@ -34,7 +34,7 @@ public class Departamento implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", no_departamento=" + no_departamento + "]";
+		return "SubGrupo [id=" + id + ", no_subGrupo=" + no_subGrupo + "]";
 	}
 
 
@@ -55,7 +55,7 @@ public class Departamento implements Serializable  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Departamento other = (Departamento) obj;
+		SubGrupo other = (SubGrupo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -69,12 +69,12 @@ public class Departamento implements Serializable  {
 		this.id = id;
 	}
 
-	public String getNo_departamento() {
-		return no_departamento;
+	public String getNo_subGrupo() {
+		return no_subGrupo;
 	}
 
-	public void setNo_departamento(String no_departamento) {
-		this.no_departamento = no_departamento;
+	public void setNo_subGrupo(String no_subGrupo) {
+		this.no_subGrupo = no_subGrupo;
 	}
 
 	public Date getDth_criacao() {

@@ -3,7 +3,7 @@ package model.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Departamento implements Serializable  {
+public class Grupo implements Serializable  {
 	
 	/**
 	 * Orlando Sabóia - FOBS
@@ -12,19 +12,19 @@ public class Departamento implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String no_departamento;
+	private String no_grupo;
 	private Date dth_criacao;
 	private Date dth_alteracao;
 	
 	
-	public Departamento () {
+	public Grupo () {
 		
 	}
 
-	public Departamento(Integer id, String no_departamento) {
+	public Grupo(Integer id, String no_grupo) {
 		super();
 		this.id = id;
-		this.no_departamento = no_departamento;
+		this.no_grupo = no_grupo;
 	}
 
 
@@ -34,7 +34,7 @@ public class Departamento implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", no_departamento=" + no_departamento + "]";
+		return "Grupo [id=" + id + ", no_grupo=" + no_grupo + "]";
 	}
 
 
@@ -55,7 +55,7 @@ public class Departamento implements Serializable  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Departamento other = (Departamento) obj;
+		Grupo other = (Grupo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -69,12 +69,12 @@ public class Departamento implements Serializable  {
 		this.id = id;
 	}
 
-	public String getNo_departamento() {
-		return no_departamento;
+	public String getNo_grupo() {
+		return no_grupo;
 	}
 
-	public void setNo_departamento(String no_departamento) {
-		this.no_departamento = no_departamento;
+	public void setNo_grupo(String no_grupo) {
+		this.no_grupo = no_grupo;
 	}
 
 	public Date getDth_criacao() {

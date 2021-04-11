@@ -3,7 +3,7 @@ package model.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Departamento implements Serializable  {
+public class Secao implements Serializable  {
 	
 	/**
 	 * Orlando Sabóia - FOBS
@@ -17,11 +17,11 @@ public class Departamento implements Serializable  {
 	private Date dth_alteracao;
 	
 	
-	public Departamento () {
+	public Secao () {
 		
 	}
 
-	public Departamento(Integer id, String no_departamento) {
+	public Secao(Integer id, String no_departamento) {
 		super();
 		this.id = id;
 		this.no_departamento = no_departamento;
@@ -34,7 +34,7 @@ public class Departamento implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", no_departamento=" + no_departamento + "]";
+		return "Secao [id=" + id + ", no_departamento=" + no_departamento + "]";
 	}
 
 
@@ -55,7 +55,7 @@ public class Departamento implements Serializable  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Departamento other = (Departamento) obj;
+		Secao other = (Secao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
