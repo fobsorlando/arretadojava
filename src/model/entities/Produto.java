@@ -32,7 +32,7 @@ public class Produto implements Serializable {
 	}
 	
 	public Produto(String no_produto, String no_produto_forn, Long cd_ean13, Double vl_venda, Double vl_custo,
-			Date dth_criacao, Date dth_alteracao, Departamento departamento, Secao secao, Grupo grupo,
+			Departamento departamento, Secao secao, Grupo grupo,
 			SubGrupo subGrupo, Fornecedor fornecedor) {
 		super();
 		this.no_produto = no_produto;

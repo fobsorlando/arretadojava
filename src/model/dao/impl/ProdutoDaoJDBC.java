@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +30,48 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 
 	@Override
 	public void insert(Produto obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("insert into produto "
+					+ "(no_produto, no_produto_forn, cd_ean13, vl_venda, vl_custo, "
+					+ "id_departamento, id_secao, id_grupo, "
+					+ "id_subgrupo, id_fornecedor) "
+					+ "values (?,?,?,?,?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS
+					);
+			
+			st.setString(1, obj.getNo_produto());
+			st.setString(2, obj.getNo_produto_forn());
+			st.setLong(3, obj.getCd_ean13());
+			st.setDouble(4, obj.getVl_venda());
+			st.setDouble(5, obj.getVl_custo());
+			st.setInt(6, obj.getDepartamento().getId());
+			st.setInt(7, obj.getSecao().getId());
+			st.setInt(8, obj.getGrupo().getId());
+			st.setInt(9, obj.getSubGrupo().getId());
+			st.setInt(10, obj.getFornecedor().getId());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				 ResultSet rs = st.getGeneratedKeys();
+				 if  (rs.next()) {
+					 int id = rs.getInt(1);
+					 obj.setId(id);
+				 }
+				 DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException ("Erro Inexperado: Não  houve Inclusão!");  
+			}
+ 
+		}
+		catch (SQLException e) {
+			throw new DbException (e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st); 
+		}
 	}
 
 	@Override
@@ -142,8 +183,55 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 
 	@Override
 	public List<Produto> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"select * from produto " 
+					+ "join departamento on departamento.id  = produto.id_departamento "
+					+ "join secao on secao.id = produto.id_secao "
+					+ "join grupo on grupo.id = produto.id_grupo "
+					+ "join subgrupo on subgrupo.id = produto.id_subgrupo "
+					+ "join fornecedor on fornecedor.id = produto.id_subgrupo "
+					+ "order by departamento.no_departamento"
+					);
+			
+			rs = st.executeQuery();
+			
+			List <Produto> list = new ArrayList<>();
+			Map <Integer, Departamento> map = new HashMap<>();
+			
+			while (rs.next()) {
+				// Cria um MAP como chave o Id do departamento
+				// Cria uma tabela (id e dep)
+				Departamento dep = map.get(rs.getInt("id_departamento"));
+
+				// Se não existir um Departmento instanciado, instancia. 
+				if (dep == null) {
+					dep =  instantiateDepartamento(rs);
+					// salva dep no MAP
+					map.put(rs.getInt("id_departamento"), dep);
+				}
+				
+				// Não fiz igual ao Departamento
+				// Depois vou entender pq
+				Secao sec = instantiateSecao(rs);
+				Grupo grp = instantiateGrupo(rs);
+				SubGrupo subG = instantiateSubGrupo(rs);
+				Fornecedor forn = instantiateFornecedor(rs);
+				
+				Produto obj = instantiateProduto(rs,dep,sec,grp,subG,forn);
+				list.add(obj);
+			}
+			return list;
+		}
+		catch (SQLException e){
+			throw new  DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	@Override
@@ -187,11 +275,11 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 				SubGrupo subG = instantiateSubGrupo(rs);
 				Fornecedor forn = instantiateFornecedor(rs);
 				
-				Produto obj = instantiateProduto(rs,dep,sec,grp,subG,forn);
+				//Produto obj = instantiateProduto(rs,dep,sec,grp,subG,forn);
+				Produto obj = instantiateProduto(rs,dep,null,null,null,null);
 				list.add(obj);
-				return list;
 			}
-			return null;
+			return list;
 		}
 		catch (SQLException e){
 			throw new  DbException(e.getMessage());
