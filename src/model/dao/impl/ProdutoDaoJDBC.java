@@ -76,8 +76,38 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 
 	@Override
 	public void udpdate(Produto obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("update produto set "
+					+ "no_produto = ?, no_produto_forn = ?, cd_ean13 = ?, "
+					+ "vl_venda = ?, vl_custo = ?, "
+					+ "id_departamento = ?, id_secao = ?, id_grupo = ?, "
+					+ "id_subgrupo = ?, id_fornecedor = ? "
+					+ "where id = ?"
+					);
+			
+			st.setString(1, obj.getNo_produto());
+			st.setString(2, obj.getNo_produto_forn());
+			st.setLong(3, obj.getCd_ean13());
+			st.setDouble(4, obj.getVl_venda());
+			st.setDouble(5, obj.getVl_custo());
+			st.setInt(6, obj.getDepartamento().getId());
+			st.setInt(7, obj.getSecao().getId());
+			st.setInt(8, obj.getGrupo().getId());
+			st.setInt(9, obj.getSubGrupo().getId());
+			st.setInt(10, obj.getFornecedor().getId());
+			st.setInt(11,obj.getId());
+			
+			int rowsAffected = st.executeUpdate();
+			
+
+		}
+		catch (SQLException e) {
+			throw new DbException (e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st); 
+		}  	
 	}
 
 	@Override

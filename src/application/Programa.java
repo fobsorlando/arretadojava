@@ -72,7 +72,18 @@ public class Programa {
 		produtoDao.insert(produto1);
 		System.out.println("Inserido Produto :" + produto1.getId());
 		
+		System.out.println("=== TESTE 5 - Update");
 
+		produto  = produtoDao.findByid(1);
+		
+		produto.setNo_produto("COXINHA DE FRANGO");
+		produto.setNo_produto_forn("COXINHA DE FRANGO DO EDY");
+		produto.setVl_venda(20.00);
+		produto.setVl_custo(5.00);
+		
+		produtoDao.udpdate(produto);
+		System.out.println("Alerado Produto :" + produto.getId());
+		
 	}
 
 }
