@@ -12,7 +12,7 @@ public class Secao implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String no_departamento;
+	private String no_secao;
 	private Date dth_criacao;
 	private Date dth_alteracao;
 	
@@ -24,7 +24,7 @@ public class Secao implements Serializable  {
 	public Secao(Integer id, String no_departamento) {
 		super();
 		this.id = id;
-		this.no_departamento = no_departamento;
+		this.no_secao = no_departamento;
 	}
 
 
@@ -34,7 +34,7 @@ public class Secao implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Secao [id=" + id + ", no_departamento=" + no_departamento + "]";
+		return "Secao [id=" + id + ", no_secao=" + no_secao + "]";
 	}
 
 
@@ -69,12 +69,12 @@ public class Secao implements Serializable  {
 		this.id = id;
 	}
 
-	public String getNo_departamento() {
-		return no_departamento;
+	public String getNo_secao() {
+		return no_secao;
 	}
 
-	public void setNo_departamento(String no_departamento) {
-		this.no_departamento = no_departamento;
+	public void setNo_secao(String no_secao) {
+		this.no_secao = no_secao;
 	}
 
 	public Date getDth_criacao() {

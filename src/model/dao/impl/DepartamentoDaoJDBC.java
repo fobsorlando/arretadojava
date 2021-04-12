@@ -6,6 +6,7 @@ import model.dao.DepartamentoDao;
 import model.entities.Departamento;
 
 public class DepartamentoDaoJDBC implements DepartamentoDao {
+	
 
 	@Override
 	public void insert(Departamento obj) {

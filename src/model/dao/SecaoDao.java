@@ -3,6 +3,7 @@ package model.dao;
 import java.util.List;
 
 import model.entities.Departamento;
+import model.entities.Secao;
 
 public interface SecaoDao {
 	void insert  (Departamento obj);

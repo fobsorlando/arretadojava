@@ -13,9 +13,10 @@ public class Produto implements Serializable {
 	private Integer id;
 	private String no_produto;
 	private String no_produto_forn;
-	private Integer cd_ean13;
+	private Long cd_ean13;
 	private Double vl_venda;
 	private Double vl_custo;
+	
 	private Date dth_criacao;
 	private Date dth_alteracao;
 	
@@ -29,8 +30,8 @@ public class Produto implements Serializable {
 	public Produto() {
 		
 	}
-
-	public Produto(String no_produto, String no_produto_forn, Integer cd_ean13, Double vl_venda, Double vl_custo,
+	
+	public Produto(String no_produto, String no_produto_forn, Long cd_ean13, Double vl_venda, Double vl_custo,
 			Date dth_criacao, Date dth_alteracao, Departamento departamento, Secao secao, Grupo grupo,
 			SubGrupo subGrupo, Fornecedor fornecedor) {
 		super();
@@ -64,11 +65,11 @@ public class Produto implements Serializable {
 		this.no_produto_forn = no_produto_forn;
 	}
 
-	public Integer getCd_ean13() {
+	public Long getCd_ean13() {
 		return cd_ean13;
 	}
 
-	public void setCd_ean13(Integer cd_ean13) {
+	public void setCd_ean13(Long cd_ean13) {
 		this.cd_ean13 = cd_ean13;
 	}
 
@@ -146,6 +147,10 @@ public class Produto implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

@@ -185,6 +185,10 @@ public class Fornecedor implements Serializable  {
 	public Integer getId() {
 		return Id;
 	}
+	
+	public void setId(Integer id) {
+		this.Id = id;
+	}
 
 
 	@Override

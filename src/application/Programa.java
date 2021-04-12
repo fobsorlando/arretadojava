@@ -1,31 +1,41 @@
 package application;
 
+import java.util.List;
+
 import model.dao.DaoFactory;
-import model.dao.DepartamentoDao;
+import model.dao.ProdutoDao;
+
+import model.entities.Produto;
 import model.entities.Departamento;
-import model.entities.Grupo;
-import model.entities.Secao;
-import model.entities.SubGrupo;
 
 public class Programa {
 
 	public static void main(String[] args) {
 		
-		Departamento obj = new Departamento(1,"BOLOS");
+	//	System.out.println(obj);
+	//	System.out.println(obj1);
+	//	System.out.println(obj2);
+	//	System.out.println(obj3);
+		System.out.println("=== TESTE 1 - Find por ID");
 		
-		Grupo obj1 = new Grupo(1,"BOLOS de cuba");
-
-		SubGrupo obj2 = new SubGrupo(1,"BOLOS de nao sei ");
-
-		Secao obj3 = new Secao(1,"mais BOLOS");
-
-		System.out.println(obj);
-		System.out.println(obj1);
-		System.out.println(obj2);
-		System.out.println(obj3);
+		ProdutoDao produtoDao = DaoFactory.createProdutoDao();
+		
+		Produto produto = produtoDao.findByid(1);
+		System.out.println(produto);
 		
 		
-		DepartamentoDao departamentoDao = DaoFactory.createDepartamentoDao();
+		System.out.println("=== TESTE 2 - Find por departamento");
+		
+		Departamento dep = new Departamento(1,null);
+		List<Produto> list = produtoDao.findByDepartamento(dep);
+		
+		for (Produto obj: list) {
+			System.out.println(obj);
+		}
+		
+		
+
+		
 
 
 	}
