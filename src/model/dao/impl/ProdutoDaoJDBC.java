@@ -112,8 +112,27 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("delete from produto  "
+					+ "where id = ?"
+					);
+
+			st.setInt(1,id);
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected == 0 ) {
+				throw  new DbException("ID NÃO EXITE PARA EXCLUIR!");
+			}
+
+		}
+		catch (SQLException e) {
+			throw new DbException (e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st); 
+		}  			
 	}
 
 	@Override

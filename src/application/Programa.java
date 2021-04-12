@@ -84,6 +84,25 @@ public class Programa {
 		produtoDao.udpdate(produto);
 		System.out.println("Alerado Produto :" + produto.getId());
 		
+		System.out.println("=== TESTE 6 - Delete");
+
+/*		produto  = produtoDao.findByid(5);
+		
+		if (produto.getId() == null) {
+			System.out.println("Produto Não Encontrato para Exclusão!");
+		}
+		else {
+			int delid = produto.getId();
+			produtoDao.deleteById(delid);
+			System.out.println("Produto (" + delid + ") Excluído!");
+		}
+	*/
+		produtoDao.deleteById(6);
+		System.out.println("Excluido");
+
+		
+
+
 	}
 
 }
