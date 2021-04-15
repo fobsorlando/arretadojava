@@ -1,17 +1,10 @@
 package application;
 
-import java.sql.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
-import model.dao.ProdutoDao;
-
-import model.entities.Produto;
-import model.entities.Secao;
-import model.entities.SubGrupo;
+import model.dao.DepartamentoDao;
 import model.entities.Departamento;
-import model.entities.Fornecedor;
-import model.entities.Grupo;
 
 public class Programa {
 
@@ -21,6 +14,8 @@ public class Programa {
 	//	System.out.println(obj1);
 	//	System.out.println(obj2);
 	//	System.out.println(obj3);
+		
+/*
 		System.out.println("=== TESTE 1 - Find por ID");
 		
 		ProdutoDao produtoDao = DaoFactory.createProdutoDao();
@@ -86,7 +81,7 @@ public class Programa {
 		
 		System.out.println("=== TESTE 6 - Delete");
 
-/*		produto  = produtoDao.findByid(5);
+     	produto  = produtoDao.findByid(5);
 		
 		if (produto.getId() == null) {
 			System.out.println("Produto Não Encontrato para Exclusão!");
@@ -96,13 +91,46 @@ public class Programa {
 			produtoDao.deleteById(delid);
 			System.out.println("Produto (" + delid + ") Excluído!");
 		}
-	*/
+
 		produtoDao.deleteById(6);
 		System.out.println("Excluido");
 
+*/
 		
+		System.out.println("=== TESTE 1 - Find por ID");
+		
+		DepartamentoDao  depDao = DaoFactory.createDepartamentoDao();
+		
+		Departamento dep = depDao.findByid(1);
+		System.out.println(dep);
+		
+		System.out.println("=== TESTE 2 - Find ALL");
+		
+		
+
+		List<Departamento> list   = depDao.findAll();
+		
+		for (Departamento obj: list) {
+			System.out.println(obj);
+		}
+		
+		System.out.println("=== TESTE 4 - Insert");
+
+		Departamento departamento = new Departamento(null,"BOLOS EM GERAL");
+		//depDao.insert(departamento);
+		//System.out.println("Inserido Departamento :" + departamento.getId());
+		
+		
+		System.out.println("=== TESTE 4 - Alteração");
+
+		departamento = new Departamento(3,"COXINHAS EM GERAL"); 
+		depDao.udpdate(departamento);
+		System.out.println("Alterado Departamento :" + departamento.getId());
+		
+		System.out.println("=== TESTE 5 - Delete");
+		departamento = new Departamento(4,null);
+		depDao.deleteById(4);
 
 
 	}
-
 }

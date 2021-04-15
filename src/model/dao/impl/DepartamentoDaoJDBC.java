@@ -1,9 +1,18 @@
 package model.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import db.DB;
+import db.DbException;
 import model.dao.DepartamentoDao;
 import model.entities.Departamento;
+import model.entities.Produto;
 
 public class DepartamentoDaoJDBC implements DepartamentoDao {
 	
@@ -11,7 +20,7 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 
     private Connection conn;
 
-    public ProdutoDaoJDBC(Connection conn) {
+    public DepartamentoDaoJDBC(Connection conn) {
                 this.conn=conn;
     }
 
@@ -118,7 +127,7 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 		try {
 				st = conn.prepareStatement(
 								"select * from departamento  "
-								+ "where produto.id = ?"
+								+ "where id = ?"
 								);
 				st.setInt(1, id);
 				rs = st.executeQuery();
@@ -148,14 +157,16 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 				st = conn.prepareStatement(
 								"select * from departamento  "
 								);
-				st.setInt(1, id);
+				
 				rs = st.executeQuery();
-				if (rs.next()) {
+				List <Departamento> list = new ArrayList<>();
+
+				while (rs.next()) {
 					Departamento obj = instantiateDepartamento(rs);
 
-					return obj;
+					list.add(obj);
 				}
-				return null;
+				return list;
 		}
 		catch (SQLException e){
 				throw new  DbException(e.getMessage());
@@ -169,8 +180,8 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 
 	private Departamento instantiateDepartamento(ResultSet rs) throws SQLException {
 		Departamento forn = new Departamento();
-		forn.setId(rs.getInt("id_Departamento"));
-		forn.setNo_Departamento(rs.getString("no_Departamento"));
+		forn.setId(rs.getInt("id"));
+		forn.setNo_departamento(rs.getString("no_Departamento"));
 		return forn;
 	}
 
